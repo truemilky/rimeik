@@ -726,6 +726,10 @@ li {
     width: 50px;
 }
 
+.arrow__icon--desk {
+    width: 50px;
+}
+
 .prices__button {
     max-width: 250px;
     margin: 0 auto;
