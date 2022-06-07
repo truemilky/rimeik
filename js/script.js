@@ -80,41 +80,123 @@ for (let anchor of anchors) {
     })
 }
 
-//Валидация форм 
+//Валидация форм и отправка данных
 const mainForm = document.forms.mainForm;
 const mainFormName = mainForm.name;
 const mainFormTel = mainForm.phone;
 const mainFormError = document.querySelector('.feedback__form--error');
 
-mainForm.addEventListener('submit', (e) => {
+mainForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    mainFormError.hidden = true;
-    mainFormError.classList.remove('valid');
 
-    validateForm()
+    if (validateMainForm() === true) {
+        const data = new FormData(e.target);
 
+        const name = data.get('name') ? data.get('name') : '';
+        const phone = data.get('phone') ? data.get('phone') : '';
+        const token = '5590467851:AAGpXbQMNsZ6GUHEFzGRa_0iKhWcFAZUOUY';
+        const chatId = '-799563612';
+        const txt = `Имя: ${name};%0AНомер: ${phone};`;
+        const endpoint = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&parse_mode=html&text=${txt}`;
+
+        let response = await fetch(endpoint);
+
+        if (response.ok) { // если HTTP-статус в диапазоне 200-299
+            // получаем тело ответа (см. про этот метод ниже)
+            let json = await response.json();
+            console.log(json);
+        } else {
+            alert("Ошибка HTTP: " + response.status);
+        }
+
+    }
 });
 
-const validateForm = () => {
+callbackForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (validateCallbackForm() === true) {
+        const data = new FormData(e.target);
+
+        const phone = data.get('phone') ? data.get('phone') : '';
+        const token = '5590467851:AAGpXbQMNsZ6GUHEFzGRa_0iKhWcFAZUOUY';
+        const chatId = '-799563612';
+        const txt = `Перезвоните мне: ${phone}`;
+        const endpoint = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&parse_mode=html&text=${txt}`;
+
+        let response = await fetch(endpoint);
+
+        if (response.ok) { // если HTTP-статус в диапазоне 200-299
+            // получаем тело ответа (см. про этот метод ниже)
+            let json = await response.json();
+            console.log(json);
+        } else {
+            alert("Ошибка HTTP: " + response.status);
+        }
+    }
+});
+
+const validateMainForm = () => {
     const regexName = /^[a-zA-Zа-яА-Я'][a-zA-Zа-яА-Я-' ]+[a-zA-Zа-яА-Я']?$/u;
     const regexTel = /^\d+$/;
+    let isValidate = false;
 
-    if (!mainFormName.value && !mainFormTel.value) {
+    if (!mainFormName.value && !mainFormTel.value || mainFormName.value && !mainFormTel.value || !mainFormName.value && mainFormTel.value) {
         mainFormError.textContent = 'Пожалуйста, заполните все обязательные поля';
         mainFormError.hidden = false;
+        return isValidate;
     } else if (mainFormName.value.match(regexName) && mainFormTel.value.match(regexTel)) {
         mainForm.classList.add('dissapear');
+        mainForm.style.display = 'none';
+        mainFormError.style.margin = '0 auto';
         setTimeout(() => {
             mainFormError.hidden = false;
             mainFormError.classList.add('valid');
             mainFormError.textContent = 'Спасибо, ваша заявка успешно отправлена!'
         }, 300)
+
+        isValidate = true;
+
+        return isValidate;
     } else if (!mainFormName.value.match(regexName) && mainFormTel.value.match(regexTel)) {
         mainFormError.textContent = 'Пожалуйста, введите корректное имя'
         mainFormError.hidden = false;
+        return isValidate;
     } else if (mainFormName.value.match(regexName) && !mainFormTel.value.match(regexTel)) {
         mainFormError.textContent = 'Пожалуйста, введите корректный номер телефона'
         mainFormError.hidden = false;
+        return isValidate;
+    }
+}
+
+const callbackInputName = callbackForm.phone;
+const callbackError = document.querySelector('.callback__form--error');
+const callbackSuccess = document.querySelector('.callback__form--success');
+const callbackSubmit = document.querySelector('.callback__form--submit');
+
+const validateCallbackForm = () => {
+    const regexTel = /^\d+$/;
+    let isValidate = false;
+
+    if (!callbackInputName.value) {
+        callbackError.textContent = 'Пожалуйста, введите номер телефона';
+        callbackError.hidden = false;
+        return isValidate;
+    } else if (!callbackInputName.value.match(regexTel)) {
+        callbackError.textContent = 'Пожалуйста, введите корректный номер телефона';
+        callbackError.hidden = false;
+        return isValidate;
+    } else if (callbackInputName.value.match(regexTel)) {
+        callbackSubmit.style.display = 'none';
+        callbackError.style.display = 'none';
+        callbackInputName.style.display = 'none';
+        setTimeout(() => {
+            callbackSuccess.classList.remove('hidden');
+        }, 300)
+
+        isValidate = true;
+
+        return isValidate;
     }
 }
 
@@ -134,6 +216,3 @@ burger.addEventListener('click', (e) => {
         headerWrapper.classList.toggle('padding');
     });
 });
-
-//Отправка данных с формы в телегу 
-
