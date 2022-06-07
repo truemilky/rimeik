@@ -370,49 +370,13 @@
                 Прием заявок круглосуточный. Мастера выезжают в течение дня до наступления комендантского часа.
             </div>
 
-            <form action="" id="form" name="mainForm" class="feedback__form element-animation">
+            <form action="" id="form" name="mainForm" method="post" class="feedback__form element-animation">
                 <div class="feedback__form--body">
                     <input type="text" name="name" id="name" placeholder="Имя">
                     <input type="tel" name="phone" id="phone" placeholder="Телефон">
                     <button class="feedback__form--button intro__button" type="submit">Отправить заявку</button>
                 </div>
             </form>
-
-            <?php
-
-
-            if (isset($_POST['form'])) { // Это ид кнопки на которую нажмут и сработает php скрипт - Убрать если просто сообщение при заходе на страницу ( внизу скобку убрать }
-
-                $name = $_POST['name']; // это что ловим с формы 
-                $phone = $_POST['phone']; // это что ловим с формы
-                // Можно приписывать так если ловить не надо 
-                // $zakaz = "Заказ с сайты XXX";
-
-                $token = "5590467851:AAGpXbQMNsZ6GUHEFzGRa_0iKhWcFAZUOUY"; // Это ТОКЕН
-                $chat_id = "-799563612"; // Это ИД группы
-
-                $arr = array(
-
-                    // 'Заказ с сайты: ' => $zakaz,
-                    'Телефон: ' => $phone,
-                    'Имя: ' => $name,
-                );
-
-                foreach ($arr as $key => $value) {
-                    $txt .= "<b>" . $key . "</b> " . $value . "%0A";
-                };
-
-                $sendToTelegram = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$txt}", "r");
-
-                // Это условие Если отправлено редирект если нет  ошибка Можно убрать!
-                if ($sendToTelegram) {
-                    header('Location: url.html');
-                } else {
-                    echo "Error";
-                }
-                // ид кнопки
-            }
-            ?>
 
             <div class="feedback__form--error" hidden>
                 Пожалуйста, заполните все обязательные поля

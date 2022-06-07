@@ -134,3 +134,6 @@ burger.addEventListener('click', (e) => {
         headerWrapper.classList.toggle('padding');
     });
 });
+
+//Отправка данных с формы в телегу 
+
