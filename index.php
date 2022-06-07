@@ -7,15 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>«Римейк» | Электрик, сантехник, муж на час Одесса: ремонтные работы всех видов, звоните:
         +38(097)275-69-87</title>
-    <meta name="description"
-        content="Вызов электрика, сантехника, ремонтные работы всех видов. Все районы города. Круглосуточно, без выходных. Качественные работы по доступным ценам. Звоните: +38(097)186-56-42">
-    <meta name="keywords"
-        content="Электрик, сантехник, муж на час, одесса, электромонтаж, ремонт, замена, установка, подключение, заземление, чистка, канализация, работы, сантехнические, сборка, монтаж">
+    <meta name="description" content="Вызов электрика, сантехника, ремонтные работы всех видов. Все районы города. Круглосуточно, без выходных. Качественные работы по доступным ценам. Звоните: +38(097)186-56-42">
+    <meta name="keywords" content="Электрик, сантехник, муж на час, одесса, электромонтаж, ремонт, замена, установка, подключение, заземление, чистка, канализация, работы, сантехнические, сборка, монтаж">
     <meta property="og:url" content="https://rimeik.com.ua/odesa">
-    <meta property="og:title"
-        content="«Римейк» | Электрик, сантехник, муж на час Одесса: ремонтные работы всех видов, звоните: +38(097)275-69-87">
-    <meta property="og:description"
-        content="Вызов электрика, сантехника, ремонтные работы всех видов. Все районы города. Круглосуточно, без выходных. Качественные работы по доступным ценам. Звоните: +38(097)186-56-42">
+    <meta property="og:title" content="«Римейк» | Электрик, сантехник, муж на час Одесса: ремонтные работы всех видов, звоните: +38(097)275-69-87">
+    <meta property="og:description" content="Вызов электрика, сантехника, ремонтные работы всех видов. Все районы города. Круглосуточно, без выходных. Качественные работы по доступным ценам. Звоните: +38(097)186-56-42">
     <meta property="og:type" content="website">
     <link rel="canonical" href="https://rimeik.com.ua/odesa">
     <meta property="fb:app_id" content="257953674358265">
@@ -382,6 +378,42 @@
                 </div>
             </form>
 
+            <?php
+
+
+            if (isset($_POST['form'])) { // Это ид кнопки на которую нажмут и сработает php скрипт - Убрать если просто сообщение при заходе на страницу ( внизу скобку убрать }
+
+                $name = $_POST['name']; // это что ловим с формы 
+                $phone = $_POST['phone']; // это что ловим с формы
+                // Можно приписывать так если ловить не надо 
+                // $zakaz = "Заказ с сайты XXX";
+
+                $token = "5590467851:AAGpXbQMNsZ6GUHEFzGRa_0iKhWcFAZUOUY"; // Это ТОКЕН
+                $chat_id = "-799563612"; // Это ИД группы
+
+                $arr = array(
+
+                    // 'Заказ с сайты: ' => $zakaz,
+                    'Телефон: ' => $phone,
+                    'Имя: ' => $name,
+                );
+
+                foreach ($arr as $key => $value) {
+                    $txt .= "<b>" . $key . "</b> " . $value . "%0A";
+                };
+
+                $sendToTelegram = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$txt}", "r");
+
+                // Это условие Если отправлено редирект если нет  ошибка Можно убрать!
+                if ($sendToTelegram) {
+                    header('Location: url.html');
+                } else {
+                    echo "Error";
+                }
+                // ид кнопки
+            }
+            ?>
+
             <div class="feedback__form--error" hidden>
                 Пожалуйста, заполните все обязательные поля
             </div>
@@ -483,12 +515,8 @@
                         </div>
                         <div class="faq__button--inner">
                             <div class="faq__button--wrapper">
-                                <svg class="faq__item--button" xmlns="http://www.w3.org/2000/svg"
-                                    xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px"
-                                    y="0px" viewBox="0 0 455 455" style="enable-background:new 0 0 455 455;"
-                                    xml:space="preserve">
-                                    <polygon
-                                        points="455,212.5 242.5,212.5 242.5,0 212.5,0 212.5,212.5 0,212.5 0,242.5 212.5,242.5 212.5,455 242.5,455 242.5,242.5   455,242.5 " />
+                                <svg class="faq__item--button" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 455 455" style="enable-background:new 0 0 455 455;" xml:space="preserve">
+                                    <polygon points="455,212.5 242.5,212.5 242.5,0 212.5,0 212.5,212.5 0,212.5 0,242.5 212.5,242.5 212.5,455 242.5,455 242.5,242.5   455,242.5 " />
                                 </svg>
                             </div>
                         </div>
@@ -507,12 +535,8 @@
                         </div>
                         <div class="faq__button--inner">
                             <div class="faq__button--wrapper">
-                                <svg class="faq__item--button" xmlns="http://www.w3.org/2000/svg"
-                                    xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px"
-                                    y="0px" viewBox="0 0 455 455" style="enable-background:new 0 0 455 455;"
-                                    xml:space="preserve">
-                                    <polygon
-                                        points="455,212.5 242.5,212.5 242.5,0 212.5,0 212.5,212.5 0,212.5 0,242.5 212.5,242.5 212.5,455 242.5,455 242.5,242.5   455,242.5 " />
+                                <svg class="faq__item--button" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 455 455" style="enable-background:new 0 0 455 455;" xml:space="preserve">
+                                    <polygon points="455,212.5 242.5,212.5 242.5,0 212.5,0 212.5,212.5 0,212.5 0,242.5 212.5,242.5 212.5,455 242.5,455 242.5,242.5   455,242.5 " />
                                 </svg>
                             </div>
                         </div>
@@ -531,12 +555,8 @@
                         </div>
                         <div class="faq__button--inner">
                             <div class="faq__button--wrapper">
-                                <svg class="faq__item--button" xmlns="http://www.w3.org/2000/svg"
-                                    xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px"
-                                    y="0px" viewBox="0 0 455 455" style="enable-background:new 0 0 455 455;"
-                                    xml:space="preserve">
-                                    <polygon
-                                        points="455,212.5 242.5,212.5 242.5,0 212.5,0 212.5,212.5 0,212.5 0,242.5 212.5,242.5 212.5,455 242.5,455 242.5,242.5   455,242.5 " />
+                                <svg class="faq__item--button" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 455 455" style="enable-background:new 0 0 455 455;" xml:space="preserve">
+                                    <polygon points="455,212.5 242.5,212.5 242.5,0 212.5,0 212.5,212.5 0,212.5 0,242.5 212.5,242.5 212.5,455 242.5,455 242.5,242.5   455,242.5 " />
                                 </svg>
                             </div>
                         </div>
@@ -555,12 +575,8 @@
                         </div>
                         <div class="faq__button--inner">
                             <div class="faq__button--wrapper">
-                                <svg class="faq__item--button" xmlns="http://www.w3.org/2000/svg"
-                                    xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px"
-                                    y="0px" viewBox="0 0 455 455" style="enable-background:new 0 0 455 455;"
-                                    xml:space="preserve">
-                                    <polygon
-                                        points="455,212.5 242.5,212.5 242.5,0 212.5,0 212.5,212.5 0,212.5 0,242.5 212.5,242.5 212.5,455 242.5,455 242.5,242.5   455,242.5 " />
+                                <svg class="faq__item--button" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 455 455" style="enable-background:new 0 0 455 455;" xml:space="preserve">
+                                    <polygon points="455,212.5 242.5,212.5 242.5,0 212.5,0 212.5,212.5 0,212.5 0,242.5 212.5,242.5 212.5,455 242.5,455 242.5,242.5   455,242.5 " />
                                 </svg>
                             </div>
                         </div>
@@ -574,8 +590,7 @@
             </div>
 
             <div class="faq__footer element-animation">
-                Если у вас остались, вопросы, пожалуйста, напишите нам на <a class="tomail__link"
-                    href="mailto:info@rimeik.com.ua">info@rimeik.com.ua</a> или свяжитесь по телефону.
+                Если у вас остались, вопросы, пожалуйста, напишите нам на <a class="tomail__link" href="mailto:info@rimeik.com.ua">info@rimeik.com.ua</a> или свяжитесь по телефону.
             </div>
         </div>
     </section>
@@ -593,21 +608,17 @@
             <div class="prices__info--button element-animation">
                 <div class="prices__info--arrow">
 
-                    <svg role="presentation" class="arrow__icon--desk" style="fill:#ffffff; "
-                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 180">
-                    <path
-                        d="M54.1 109c-.8 0-1.6-.4-2-1.1-.8-1.1-.5-2.7.6-3.5 1.3-.9 6.8-4 11.6-6.6-15.9-1.3-29.2-8.3-38.5-20.2C8.9 56 8.5 24.1 13.2 3.4c.3-1.3 1.7-2.2 3-1.9 1.3.3 2.2 1.7 1.9 3-4.5 19.6-4.2 49.8 11.6 70 9 11.5 21.5 17.7 37.2 18.4l-1.8-2.3c-1.4-1.7-2.7-3.4-4.1-5.1-.7-.9-1.5-1.9-2.3-2.9-.9-1.1-.7-2.6.4-3.5 1.1-.9 2.6-.7 3.5.4 0 0 0 .1.1.1l6.4 7.9c.5.5.9 1.1 1.4 1.7 1.5 1.8 3.1 3.6 4.4 5.6 0 .1.1.1.1.2.1.3.2.5.3.8v.6c0 .2-.1.4-.2.6-.1.1-.1.3-.2.4-.1.2-.3.4-.5.6-.1.1-.3.2-.5.3-.1 0-.1.1-.2.1-1.2.6-16 8.6-18.1 10-.5.5-1 .6-1.5.6z">
-                    </path>
-                </svg>
-                    <svg role="presentation" class="arrow__icon--mob" style="fill:#ffffff;"
-                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 70">
-                        <path
-                            d="M31.5 47c-1.1-.9-2.7-.7-3.5.4L20.2 57V5.8c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5V57l-7.8-9.7c-.8-1-2.4-1.2-3.5-.3-1.1.9-1.2 2.4-.4 3.5l12.2 15.2c.5.6 1.2.9 1.9.9s1.5-.3 1.9-.9l12.2-15.2c1-1.1.9-2.6-.2-3.5z">
+                    <svg role="presentation" class="arrow__icon--desk" style="fill:#ffffff; " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 180">
+                        <path d="M54.1 109c-.8 0-1.6-.4-2-1.1-.8-1.1-.5-2.7.6-3.5 1.3-.9 6.8-4 11.6-6.6-15.9-1.3-29.2-8.3-38.5-20.2C8.9 56 8.5 24.1 13.2 3.4c.3-1.3 1.7-2.2 3-1.9 1.3.3 2.2 1.7 1.9 3-4.5 19.6-4.2 49.8 11.6 70 9 11.5 21.5 17.7 37.2 18.4l-1.8-2.3c-1.4-1.7-2.7-3.4-4.1-5.1-.7-.9-1.5-1.9-2.3-2.9-.9-1.1-.7-2.6.4-3.5 1.1-.9 2.6-.7 3.5.4 0 0 0 .1.1.1l6.4 7.9c.5.5.9 1.1 1.4 1.7 1.5 1.8 3.1 3.6 4.4 5.6 0 .1.1.1.1.2.1.3.2.5.3.8v.6c0 .2-.1.4-.2.6-.1.1-.1.3-.2.4-.1.2-.3.4-.5.6-.1.1-.3.2-.5.3-.1 0-.1.1-.2.1-1.2.6-16 8.6-18.1 10-.5.5-1 .6-1.5.6z">
+                        </path>
+                    </svg>
+                    <svg role="presentation" class="arrow__icon--mob" style="fill:#ffffff;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 70">
+                        <path d="M31.5 47c-1.1-.9-2.7-.7-3.5.4L20.2 57V5.8c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5V57l-7.8-9.7c-.8-1-2.4-1.2-3.5-.3-1.1.9-1.2 2.4-.4 3.5l12.2 15.2c.5.6 1.2.9 1.9.9s1.5-.3 1.9-.9l12.2-15.2c1-1.1.9-2.6-.2-3.5z">
                         </path>
                     </svg>
                 </div>
 
-                
+
                 <a href="#order" class="intro__button prices__button">Отправить заявку</a>
             </div>
         </div>
@@ -634,8 +645,7 @@
 
             <a href="offer.html" class="footer__link element-animation" target="_blank">Оферта</a>
 
-            <a class="footer__social element-animation" href="https://t.me/rimeik" target="_blank"><img
-                    src="img/telegram.png" alt=""></a>
+            <a class="footer__social element-animation" href="https://t.me/rimeik" target="_blank"><img src="img/telegram.png" alt=""></a>
         </div>
     </section>
     <div class="callback">
@@ -644,11 +654,9 @@
                 <svg width="50px" height="50px" viewBox="0 0 50 50">
                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                         <g fill="#222">
-                            <path
-                                d="M25.0982353,49.2829412 C11.5294118,49.2829412 0.490588235,38.2435294 0.490588235,24.6752941 C0.490588235,11.1064706 11.53,0.0670588235 25.0982353,0.0670588235 C38.6664706,0.0670588235 49.7058824,11.1064706 49.7058824,24.6752941 C49.7058824,38.2441176 38.6664706,49.2829412 25.0982353,49.2829412 L25.0982353,49.2829412 Z M25.0982353,1.83176471 C12.5023529,1.83176471 2.25529412,12.0794118 2.25529412,24.6752941 C2.25529412,37.2705882 12.5023529,47.5182353 25.0982353,47.5182353 C37.6941176,47.5182353 47.9411765,37.2705882 47.9411765,24.6752941 C47.9411765,12.0794118 37.6941176,1.83176471 25.0982353,1.83176471 L25.0982353,1.83176471 Z">
+                            <path d="M25.0982353,49.2829412 C11.5294118,49.2829412 0.490588235,38.2435294 0.490588235,24.6752941 C0.490588235,11.1064706 11.53,0.0670588235 25.0982353,0.0670588235 C38.6664706,0.0670588235 49.7058824,11.1064706 49.7058824,24.6752941 C49.7058824,38.2441176 38.6664706,49.2829412 25.0982353,49.2829412 L25.0982353,49.2829412 Z M25.0982353,1.83176471 C12.5023529,1.83176471 2.25529412,12.0794118 2.25529412,24.6752941 C2.25529412,37.2705882 12.5023529,47.5182353 25.0982353,47.5182353 C37.6941176,47.5182353 47.9411765,37.2705882 47.9411765,24.6752941 C47.9411765,12.0794118 37.6941176,1.83176471 25.0982353,1.83176471 L25.0982353,1.83176471 Z">
                             </path>
-                            <path
-                                d="M22.8435294,30.5305882 L18.3958824,26.0829412 C18.0511765,25.7382353 18.0511765,25.18 18.3958824,24.8352941 C18.7405882,24.4905882 19.2988235,24.4905882 19.6435294,24.8352941 L22.8429412,28.0347059 L31.7282353,19.1488235 C32.0729412,18.8041176 32.6311765,18.8041176 32.9758824,19.1488235 C33.3205882,19.4935294 33.3205882,20.0517647 32.9758824,20.3964706 L22.8435294,30.5305882 L22.8435294,30.5305882 Z">
+                            <path d="M22.8435294,30.5305882 L18.3958824,26.0829412 C18.0511765,25.7382353 18.0511765,25.18 18.3958824,24.8352941 C18.7405882,24.4905882 19.2988235,24.4905882 19.6435294,24.8352941 L22.8429412,28.0347059 L31.7282353,19.1488235 C32.0729412,18.8041176 32.6311765,18.8041176 32.9758824,19.1488235 C33.3205882,19.4935294 33.3205882,20.0517647 32.9758824,20.3964706 L22.8435294,30.5305882 L22.8435294,30.5305882 Z">
                             </path>
                         </g>
                     </g>
@@ -659,8 +667,7 @@
             <div class="callback__form--error" hidden>
                 Пожалуйста, заполните все обязательные поля
             </div>
-            <input type="tel" class="callback__form--phone" name="callback__phone" id="callback__phone"
-                placeholder="+380">
+            <input type="tel" class="callback__form--phone" name="callback__phone" id="callback__phone" placeholder="+380">
             <button class="callback__form--submit">ПЕРЕЗВОНИТЕ МНЕ</button>
             <div class="callback__form--notice">
                 Связаться с нами по тел.<br>
@@ -673,29 +680,20 @@
         </div>
         <div class="callback__button">
             <div class="callback__svgs">
-                <svg role="presentation" class="callback__phone" xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 19.3 20.1">
+                <svg role="presentation" class="callback__phone" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.3 20.1">
                     <path d="M4.6 7.6l-.5-.9 2-1.2L4.6 3l-2 1.3-.6-.9 2.9-1.7 2.6 4.1"></path>
-                    <path
-                        d="M9.9 20.1c-.9 0-1.9-.3-2.9-.9-1.7-1-3.4-2.7-4.7-4.8-3-4.7-3.1-9.2-.3-11l.5.9C.2 5.7.4 9.7 3 13.9c1.2 2 2.8 3.6 4.3 4.5 1.1.6 2.7 1.1 4.1.3l1.9-1.2L12 15l-2 1.2c-1.2.7-2.8.3-3.5-.8l-3.2-5.2c-.7-1.2-.4-2.7.8-3.5l.5.9c-.7.4-.9 1.3-.5 2l3.2 5.2c.4.7 1.5.9 2.2.5l2.8-1.7 2.6 4.1-2.8 1.7c-.7.5-1.4.7-2.2.7zM13.7 11.3l-.9-.3c.4-1.1.2-2.2-.4-3.1-.6-1-1.7-1.6-2.8-1.7l.1-1c1.5.1 2.8.9 3.6 2.1.7 1.2.9 2.7.4 4z">
+                    <path d="M9.9 20.1c-.9 0-1.9-.3-2.9-.9-1.7-1-3.4-2.7-4.7-4.8-3-4.7-3.1-9.2-.3-11l.5.9C.2 5.7.4 9.7 3 13.9c1.2 2 2.8 3.6 4.3 4.5 1.1.6 2.7 1.1 4.1.3l1.9-1.2L12 15l-2 1.2c-1.2.7-2.8.3-3.5-.8l-3.2-5.2c-.7-1.2-.4-2.7.8-3.5l.5.9c-.7.4-.9 1.3-.5 2l3.2 5.2c.4.7 1.5.9 2.2.5l2.8-1.7 2.6 4.1-2.8 1.7c-.7.5-1.4.7-2.2.7zM13.7 11.3l-.9-.3c.4-1.1.2-2.2-.4-3.1-.6-1-1.7-1.6-2.8-1.7l.1-1c1.5.1 2.8.9 3.6 2.1.7 1.2.9 2.7.4 4z">
                     </path>
-                    <path
-                        d="M16.5 11.9l-1-.3c.5-1.8.2-3.7-.8-5.3-1-1.6-2.7-2.6-4.7-2.9l.1-1c2.2.3 4.2 1.5 5.4 3.3 1.2 1.9 1.6 4.1 1 6.2z">
+                    <path d="M16.5 11.9l-1-.3c.5-1.8.2-3.7-.8-5.3-1-1.6-2.7-2.6-4.7-2.9l.1-1c2.2.3 4.2 1.5 5.4 3.3 1.2 1.9 1.6 4.1 1 6.2z">
                     </path>
-                    <path
-                        d="M18.9 12.5l-1-.3c.7-2.5.2-5.1-1.1-7.2-1.4-2.2-3.7-3.6-6.3-4l.1-1c2.9.4 5.4 2 7 4.4 1.6 2.4 2.1 5.3 1.3 8.1z">
+                    <path d="M18.9 12.5l-1-.3c.7-2.5.2-5.1-1.1-7.2-1.4-2.2-3.7-3.6-6.3-4l.1-1c2.9.4 5.4 2 7 4.4 1.6 2.4 2.1 5.3 1.3 8.1z">
                     </path>
                 </svg>
 
-                <svg class="callback__close" viewBox="0 0 23 23" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                <svg class="callback__close" viewBox="0 0 23 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <g stroke="none" stroke-width="1" fill="#000" fill-rule="evenodd">
-                        <rect
-                            transform="translate(11.313708, 11.313708) rotate(-45.000000) translate(-11.313708, -11.313708) "
-                            x="10.3137085" y="-3.6862915" width="2" height="30"></rect>
-                        <rect
-                            transform="translate(11.313708, 11.313708) rotate(-315.000000) translate(-11.313708, -11.313708) "
-                            x="10.3137085" y="-3.6862915" width="2" height="30"></rect>
+                        <rect transform="translate(11.313708, 11.313708) rotate(-45.000000) translate(-11.313708, -11.313708) " x="10.3137085" y="-3.6862915" width="2" height="30"></rect>
+                        <rect transform="translate(11.313708, 11.313708) rotate(-315.000000) translate(-11.313708, -11.313708) " x="10.3137085" y="-3.6862915" width="2" height="30"></rect>
                     </g>
                 </svg>
             </div>
