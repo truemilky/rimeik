@@ -81,6 +81,10 @@ li {
     background-image: url(../img/rimeik_title.webp)
 }
 
+.no-webp .intro {
+    background-image: url(../img/rimeik_title.jpg)
+}
+
 .overall {
     position: absolute;
     width: 100%;
@@ -312,6 +316,10 @@ li {
     background-image: url(../img/services_1.webp)
 }
 
+.no-webp .services__image--1 {
+    background-image: url(../img/services_1.jpg)
+}
+
 .services__image--2 {
     background-image: url(../img/services_2.jpg)
 }
@@ -320,12 +328,20 @@ li {
     background-image: url(../img/services_2.webp)
 }
 
+.no-webp .services__image--2 {
+    background-image: url(../img/services_2.jpg)
+}
+
 .services__image--3 {
     background-image: url(../img/services_3.jpg)
 }
 
 .webp .services__image--3 {
     background-image: url(../img/services_3.webp)
+}
+
+.no-webp .services__image--3 {
+    background-image: url(../img/services_3.jpg)
 }
 
 .services__item--name {
@@ -472,6 +488,10 @@ li {
 
 .webp .feedback {
     background-image: url(../img/feedback_bcg.webp)
+}
+
+.no-webp .feedback {
+    background-image: url(../img/feedback_bcg.jpg)
 }
 
 .overall--dark {
@@ -1093,6 +1113,10 @@ li {
         background-image: url(../img/services_1_big.webp)
     }
 
+    .no-webp .services__image--1 {
+        background-image: url(../img/services_1_big.jpg)
+    }
+
     .services__image--2 {
         background-image: url(../img/services_2_big.jpg)
     }
@@ -1101,12 +1125,20 @@ li {
         background-image: url(../img/services_2_big.webp)
     }
 
+    .no-webp .services__image--2 {
+        background-image: url(../img/services_2_big.jpg)
+    }
+
     .services__image--3 {
         background-image: url(../img/services_3_big.jpg)
     }
 
     .webp .services__image--3 {
         background-image: url(../img/services_3_big.webp)
+    }
+
+    .no-webp .services__image--3 {
+        background-image: url(../img/services_3_big.jpg)
     }
 
     .services__item {
